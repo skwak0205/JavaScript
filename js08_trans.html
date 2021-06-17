@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script type="text/javascript">
+      function numTest(val) {
+        alert(typeof val);
+        var val = Number(val) + 100;
+        alert(val + typeof val);
+      }
+
+      function intTest(val) {
+        var val = parseInt(val) + 100;
+        alert(val + typeof val);
+      }
+
+      function floatTest(val) {
+        var val = parseFloat(val) + 100;
+        alert(val + typeof val);
+      }
+
+      function evalTest() {
+        var val = document.getElementsByName('evalue')[0];
+        if (confirm('작성하신 코드가 맞나요? : ' + val.value)) {
+          document.getElementsByTagName('span')[0].innerHTML =
+            '<b>계산결과:' + eval(val.value) + '</b>';
+        }
+      }
+
+      function calc() {
+        //var num01 = document.getElementById("num01");
+        //var op = document.getElementById("op");
+        //var num02 = document.getElementById("num02");
+        //var result = document.getElementById("result");
+
+        //var cal = num01.value + op.value + num02.value;
+        //result.innerHTML = "<b style='color:red;'>계산결과:" +eval(cal)+"</b>"
+
+        var calc = document.querySelectorAll('.mycalc');
+        var res = '';
+        for (var i = 0; i < calc.length; i++) {
+          res += calc[i].value;
+        }
+
+        document.getElementsByTagName('span')[1].innerHTML = eval(res);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>형변환</h1>
+
+    <h2>1. 숫자형 형변환 : number()</h2>
+    <input type="text" id="num" />
+    <button onclick="numTest(num.value)">클릭!</button>
+
+    <h2>2. 정수형 형변환 : parseInt()</h2>
+    <input type="text" id="int" />
+    <button onclick="intTest(int.value)">클릭!</button>
+
+    <h2>3. 실수형 형변환 : parseFloat()</h2>
+    <input type="text" id="float" />
+    <button onclick="floatTest(float.value)">클릭!</button>
+
+    <h2>검증함수 : eval()</h2>
+    <p>문자열로 된 코드(수식)을 자바스크립트로 읽어들여서 실행</p>
+    <input type="text" name="evalue" placeholder="예) 5 + 10" />
+    <button onclick="evalTest();">클릭!</button>
+    <span></span>
+
+    <hr />
+
+    <input type="number" id="num01" class="mycalc" />
+    <input type="text" id="op" list="cal" class="mycalc" />
+    <datalist id="cal">
+      <option value="+" />
+      <option value="-" />
+      <option value="*" />
+      <option value="/" />
+    </datalist>
+
+    <input type="number" id="num02" class="mycalc" />
+    <button onclick="calc();">계산</button>
+    <span id="result"></span>
+  </body>
+</html>
